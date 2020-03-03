@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 function Nav() {
     return (
-        <nav style={{width: "100%",height: "50px", borderBottom:"solid 2px black"}}>
+        <nav style={{width: "100%",height: "50px", borderBottom:"solid 2px black", marginBottom:"30px"}}>
             <p>
                 <b style={{fontSize:"larger", margin:"20px"}}>Google Books </b>
                 <b >
