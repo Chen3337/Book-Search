@@ -1,7 +1,7 @@
 import React from 'react';
 function Save(props) {
     return (
-        <div style={{ width: "100%", height: "200px", border: "solid 2px black", padding: "10px" }}>
+        <div style={{ width: "100%", height: "200px", border: "solid 2px black", padding: "10px", margin:"10px" }}>
             <b>Book Search</b>
             <br />
             <p>book name:</p>
