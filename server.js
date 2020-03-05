@@ -1,12 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// require('dotenv').config();
+const routes = require('./route/route');
+const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3001;
 
-// app.use(logger('dev'));
 
+mongoose.connect(process.env.DB,
+    { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Database connected successfully'))
+    .catch(err => console.log(err)
+    );
+app.use(bodyParser.json());
+app.use('/api', routes);
 app.use((err, req, res, next) => {
     console.log(err);
     res.header("Access-Control-Allow-Origin", "*");

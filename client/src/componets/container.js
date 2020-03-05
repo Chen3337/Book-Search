@@ -11,7 +11,7 @@ function Container () {
             <div className="container">
                 <Switch>
                     <Route exact path="/" component={Search} />
-                    {/* <Route exact path="/save" component={Save} /> */}
+                    <Route exact path="/save" component={Save} />
                     <Route component={Search} />
                 </Switch>
             </div>

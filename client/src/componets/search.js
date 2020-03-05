@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './Searchbar';
-import Axios from 'axios';
+import axios from 'axios';
 import Results from './searchresult';
 class Search extends Component {
     state = {
@@ -15,12 +15,13 @@ class Search extends Component {
     }
     // :keyes&key=AIzaSyA7mmY3NZcjuqBUI79Fnscy_ps80-4h2-Y
     handleSubmit = () => {
-        Axios.get(`https://www.googleapis.com/books/v1/volumes?q=${encodeURI(this.state.search)}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${encodeURI(this.state.search)}`)
             .then((result) => {
                 var array = [];
                 var books = result.data.items;
                 for (var i = 0; i < books.length; i++) {
                     var book = {
+                        id: i,
                         title: books[i].volumeInfo.title,
                         authors: books[i].volumeInfo.authors ? books[i].volumeInfo.authors : books[i].volumeInfo.publisher,
                         description: books[i].volumeInfo.description,
@@ -37,14 +38,20 @@ class Search extends Component {
                 console.log(err);
             });
     }
-    onSave = () => {
-
+    onCallApi = (id) => {
+        var data = this.state.result[id];
+        console.log(data);
+        axios.post('/api/newbook', data)
+            .then(function (response){
+                console.log(response);
+            }).catch((err) => console.log(err));
     }
+
     render() {
         return (
             <div>
                 <SearchBar handleOnChange={this.handleOnChange} search={this.state.search} submit={this.handleSubmit} />
-                <Results result={this.state.result} onSave={this.onSave} />
+                <Results result={this.state.result} onCallApi={this.onCallApi} />
             </div>
         )
     }

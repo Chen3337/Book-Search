@@ -6,7 +6,7 @@ function Results(props) {
         <div style={{ width: "100%", border: "solid 2px black", margin: "30px 10px 0px 10px", padding: "10px" }}>
             <h3>Results :</h3>
             {props.result.map(res => (
-                <div style={{ width: "100%", border: "solid 1px black", padding: "10px" }}>
+                <div key={res.id} style={{ width: "100%", border: "solid 1px black", padding: "10px" }}>
                     <div className="row">
                         <div className="col-md-9">
                             <b>{res.title}</b>
@@ -15,7 +15,7 @@ function Results(props) {
                         </div>
                         <div className="col-md-3" style={{textAlign:"right"}}>
                             <a className="btn btn-info" href={res.link} >More info</a>
-                            <a onClick={props.onSave} style={{color: "white"}} className="btn btn-success">Save</a>
+                            <button onClick={() => props.onCallApi(res.id)} className="btn btn-success">Save</button>
                         </div>
                     </div>
                     <div className="row" >
