@@ -13,8 +13,13 @@ router.post('/newbook', function (req, res){
     }).then((result) => {
         res.send(result);
     }).catch((err) => res.send(err));
-    
 });
+
+router.get('/savedbook', function (req, res){
+    books.find({}).then((result) => {
+        res.json(result);
+    }).catch((err) => res.send(err));
+})
 
 
 

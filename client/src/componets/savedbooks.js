@@ -1,0 +1,35 @@
+import React from 'react';
+
+
+function Savedbooks(props) {
+    return (
+        <div style={{ width: "100%", border: "solid 2px black", margin: "30px 10px 0px 10px", padding: "10px" }}>
+            <h3>Saved Books :</h3>
+            {props.saveBooks.map(res => (
+                <div key={res._id} style={{ width: "100%", border: "solid 1px black", padding: "10px" }}>
+                    <div className="row">
+                        <div className="col-md-9">
+                            <b>{res.title}</b>
+                            <br />
+                            <p>authors: {res.authors ? res.authors : "null"}</p>
+                        </div>
+                        <div className="col-md-3" style={{textAlign:"right"}}>
+                            <a className="btn btn-info" href={res.link} >More info</a>
+                            <button onClick={() => props.deleteSaved(res._id)} className="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                    <div className="row" >
+                        <div className="col-md-3">
+                            <img src={res.image} alt={res.title} />
+                        </div>
+                        <div className="col-md-9">
+                            description: <br /> {res.description ? res.description : "null"}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default Savedbooks;
